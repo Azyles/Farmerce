@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "640629381979",
+    "project_id": "farmerce-6a1bb",
+    "storage_bucket": "farmerce-6a1bb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:640629381979:android:8ced499e77d5b222d4187e",
+        "android_client_info": {
+          "package_name": "com.example.farmerce"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "640629381979-rkvoio6o3i3orj94kgkb7umsl2igouv2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDw8raSbdkNilAWHAa-QWrltbK-eTjskwg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "640629381979-rkvoio6o3i3orj94kgkb7umsl2igouv2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
