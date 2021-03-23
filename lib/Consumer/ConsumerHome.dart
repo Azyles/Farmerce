@@ -1,4 +1,6 @@
 // Home page
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -78,14 +80,87 @@ class _ConsumerHomeState extends State<ConsumerHome> {
                                   'https://cdn.dribbble.com/users/3949861/screenshots/14387811/media/8ac916cc3132b0d6f35a77605588671d.jpg?compress=1&resize=1000x750'))),
                       child: Stack(
                         children: [
-                          
                           Container(
-                            child: Column(
-                              children: [
-                                
-                              ],
+                            margin: EdgeInsets.only(left: 15, top: 200),
+                            child: ClipRect(
+                              child: BackdropFilter(
+                                filter: ImageFilter.blur(
+                                  sigmaX: 10.0,
+                                  sigmaY: 10.0,
+                                ),
+                                child: Container(
+                                  height: 80,
+                                  width: 180,
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        margin:
+                                            EdgeInsets.only(top: 10, left: 10),
+                                        child: Text("20 mi away",
+                                            style: TextStyle(
+                                                color: Colors.grey[100])),
+                                      ),
+                                      Container(
+                                        margin:
+                                            EdgeInsets.only(top: 5, left: 10),
+                                        child: Text(
+                                          "John Doe Farms",
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 20),
+                                        ),
+                                      ),
+                                      Container(
+                                        margin: EdgeInsets.only(left: 10),
+                                        child: Row(
+                                          children: [
+                                            Container(
+                                              margin: EdgeInsets.only(right: 5),
+                                              child: Icon(
+                                                Icons.star,
+                                                color: Colors.yellow[600],
+                                              ),
+                                            ),
+                                            Container(
+                                              margin: EdgeInsets.only(right: 5),
+                                              child: Icon(
+                                                Icons.star,
+                                                color: Colors.yellow[600],
+                                              ),
+                                            ),
+                                            Container(
+                                              margin: EdgeInsets.only(right: 5),
+                                              child: Icon(
+                                                Icons.star,
+                                                color: Colors.yellow[600],
+                                              ),
+                                            ),
+                                            Container(
+                                              margin: EdgeInsets.only(right: 5),
+                                              child: Icon(
+                                                Icons.star,
+                                                color: Colors.yellow[600],
+                                              ),
+                                            ),
+                                            Container(
+                                              margin: EdgeInsets.only(right: 5),
+                                              child: Icon(
+                                                Icons.star_border,
+                                                color: Colors.yellow[600],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
                             ),
-                          )
+                          ),
                         ],
                       ),
                     );
