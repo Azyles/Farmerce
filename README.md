@@ -1,4 +1,4 @@
-# farmerce
+# Farmerce
 
 A new Flutter project.
 
