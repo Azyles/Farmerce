@@ -40,6 +40,13 @@ class _ConsumerHomeState extends State<ConsumerHome> {
                   margin: EdgeInsets.only(left: 10, right: 10, bottom: 5),
                   child: TextField(
                     decoration: InputDecoration(
+                        border: InputBorder.none,
+                        focusedBorder: InputBorder.none,
+                        enabledBorder: InputBorder.none,
+                        errorBorder: InputBorder.none,
+                        disabledBorder: InputBorder.none,
+                        contentPadding: EdgeInsets.only(
+                            left: 15, bottom: 11, top: 11, right: 15),
                         prefixIcon: Icon(
                           Icons.search,
                           color: Colors.grey,
@@ -51,19 +58,29 @@ class _ConsumerHomeState extends State<ConsumerHome> {
                   ),
                 ),
               ),
-              ListView.builder(
-                itemCount: x.length,
-                itemBuilder: (index, context) {
-                  return Container(
-                    child: Stack(
-                      children: [
-                        
-                      ],
-                    ),
-                    
-                  );
-                },
-              )
+              Container(
+                height: MediaQuery.of(context).size.height * 0.75,
+                child: ListView.builder(
+                  physics: BouncingScrollPhysics(),
+                  itemCount: x.length,
+                  itemBuilder: (context, index) {
+                    return Container(
+                      margin: EdgeInsets.only(bottom: 20, left: 10, right: 10),
+                      width: MediaQuery.of(context).size.width * 0.8,
+                      height: 300,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          image: DecorationImage(
+                              fit: BoxFit.fill,
+                              image: NetworkImage(
+                                  'https://cdn.dribbble.com/users/3949861/screenshots/14387811/media/8ac916cc3132b0d6f35a77605588671d.jpg?compress=1&resize=1000x750'))),
+                      child: Stack(
+                        children: [],
+                      ),
+                    );
+                  },
+                ),
+              ),
             ],
           )),
     );
