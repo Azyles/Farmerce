@@ -1,5 +1,6 @@
 import 'package:farmerce/Consumer/ConsumerFarm.dart';
 import 'package:farmerce/Consumer/ConsumerHome.dart';
+import './Farmers/FarmerContracts.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: ConsumerHome(),
+      home: FarmerContracts(),
     );
   }
 }
