@@ -39,6 +39,7 @@ class _ConsumerHomeState extends State<ConsumerHome> {
                 child: Container(
                   margin: EdgeInsets.only(left: 10, right: 10, bottom: 5),
                   child: TextField(
+                    style: TextStyle(color: Colors.white),
                     decoration: InputDecoration(
                         border: InputBorder.none,
                         focusedBorder: InputBorder.none,
@@ -59,6 +60,7 @@ class _ConsumerHomeState extends State<ConsumerHome> {
                 ),
               ),
               Container(
+                margin: EdgeInsets.only(top: 10),
                 height: MediaQuery.of(context).size.height * 0.75,
                 child: ListView.builder(
                   physics: BouncingScrollPhysics(),
@@ -75,7 +77,16 @@ class _ConsumerHomeState extends State<ConsumerHome> {
                               image: NetworkImage(
                                   'https://cdn.dribbble.com/users/3949861/screenshots/14387811/media/8ac916cc3132b0d6f35a77605588671d.jpg?compress=1&resize=1000x750'))),
                       child: Stack(
-                        children: [],
+                        children: [
+                          
+                          Container(
+                            child: Column(
+                              children: [
+                                
+                              ],
+                            ),
+                          )
+                        ],
                       ),
                     );
                   },
