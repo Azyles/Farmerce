@@ -3,49 +3,45 @@ import 'package:flutter/material.dart';
 class FarmerContracts extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-          title: Center(
+    return Container(
+      child: Column(
+        children: [
+          Padding(
+            padding: EdgeInsets.only(top: 30),
             child: Text(
               'Contracts',
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(color: Colors.white, fontSize: 22),
             ),
           ),
-          backgroundColor: Colors.black),
-      backgroundColor: Colors.black,
-      body: Container(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(10),
-              child: Text(
-                'Active Contracts',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 16,
-                ),
+          Padding(
+            padding: const EdgeInsets.only(top: 40, bottom: 30),
+            child: Text(
+              'Active Contracts',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 17,
               ),
             ),
-            Expanded(
-              flex: 1,
-              child: ActiveContractList(),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10),
-              child: Text(
-                'Live Contracts',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 16,
-                ),
+          ),
+          Expanded(
+            flex: 1,
+            child: ActiveContractList(),
+          ),
+          Container(
+            padding: const EdgeInsets.symmetric(vertical: 30),
+            child: Text(
+              'Live Contracts',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 17,
               ),
             ),
-            Expanded(
-              flex: 1,
-              child: LiveContractList(),
-            ),
-          ],
-        ),
+          ),
+          Expanded(
+            flex: 1,
+            child: LiveContractList(),
+          ),
+        ],
       ),
     );
   }
@@ -58,6 +54,7 @@ class ActiveContractList extends StatelessWidget {
       // color: Colors.grey,
       child: ListView(
         physics: BouncingScrollPhysics(),
+        padding: EdgeInsets.all(0),
         children: [
           ActiveContract(
             name: 'Apples',
@@ -116,8 +113,8 @@ class ActiveContract extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-      padding: EdgeInsets.all(10),
+      margin: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+      padding: EdgeInsets.all(8),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         color: Color(0xff181818),
@@ -129,14 +126,14 @@ class ActiveContract extends StatelessWidget {
             borderRadius: BorderRadius.circular(10),
             child: Image.network(
               imgUrl,
-              width: 55,
-              height: 55,
+              width: 50,
+              height: 50,
               fit: BoxFit.cover,
             ),
           ),
           SizedBox(width: 20),
           Container(
-            width: MediaQuery.of(context).size.width*0.16,
+            width: MediaQuery.of(context).size.width * 0.16,
             child: Text(
               name,
               style: TextStyle(color: Colors.white, fontSize: 16),
@@ -181,6 +178,7 @@ class LiveContractList extends StatelessWidget {
       // color: Colors.green,
       child: ListView(
         physics: BouncingScrollPhysics(),
+        padding: EdgeInsets.all(0),
         children: [
           LiveContract(
             name: 'Banana',
@@ -238,8 +236,8 @@ class LiveContract extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-      padding: EdgeInsets.all(10),
+      margin: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+      padding: EdgeInsets.all(8),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         color: Color(0xff181818),
@@ -251,14 +249,14 @@ class LiveContract extends StatelessWidget {
             borderRadius: BorderRadius.circular(10),
             child: Image.network(
               imgUrl,
-              width: 55,
-              height: 55,
+              width: 50,
+              height: 50,
               fit: BoxFit.cover,
             ),
           ),
           SizedBox(width: 20),
           Container(
-            width: MediaQuery.of(context).size.width*0.15,
+            width: MediaQuery.of(context).size.width * 0.15,
             child: Text(
               name,
               style: TextStyle(color: Colors.white, fontSize: 16),
