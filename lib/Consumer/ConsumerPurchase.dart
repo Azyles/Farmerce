@@ -129,7 +129,7 @@ class _ConsumerPurchaseState extends State<ConsumerPurchase> {
                         borderRadius: BorderRadius.circular(10),
                       ),
                       onPressed: () {},
-                      color: Colors.green,
+                      color: Color.fromRGBO(131, 194, 100, 1),
                       child: Text(
                         "Purchase",
                         style: TextStyle(color: Colors.white, fontSize: 17),
