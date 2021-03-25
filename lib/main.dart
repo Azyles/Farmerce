@@ -1,11 +1,15 @@
 import 'package:farmerce/Consumer/ConsumerFarm.dart';
 import 'package:farmerce/Consumer/ConsumerHome.dart';
-import 'package:farmerce/Consumer/ConsumerPurchase.dart';
 import './Farmers/FarmerContracts.dart';
 import 'package:flutter/material.dart';
+import 'Business/BusinessHome.dart';
+import 'Business/BusinessItem.dart';
+import 'Farmers/Farmer.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(
+    MyApp(),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -13,11 +17,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: ConsumerPurchase(),
+      home: ItemPurchase(),
     );
   }
 }
