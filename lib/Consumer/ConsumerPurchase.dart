@@ -17,6 +17,19 @@ class _ConsumerPurchaseState extends State<ConsumerPurchase> {
     return MaterialApp(
       home: Scaffold(
         backgroundColor: Colors.black,
+        appBar: AppBar(
+          elevation: 0,
+          backgroundColor: Colors.black,
+          leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: Icon(
+              Icons.arrow_back,
+              color: Colors.white,
+            ),
+          ),
+        ),
         body: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -24,7 +37,7 @@ class _ConsumerPurchaseState extends State<ConsumerPurchase> {
             children: [
               Center(
                 child: Container(
-                  margin: EdgeInsets.only(top: 50),
+                  margin: EdgeInsets.only(top: 0, bottom: 50),
                   child: Text(
                     "John Doe Farms",
                     style: TextStyle(color: Colors.white, fontSize: 25),
@@ -34,7 +47,7 @@ class _ConsumerPurchaseState extends State<ConsumerPurchase> {
               SingleChildScrollView(
                 child: Center(
                     child: Container(
-                  height: MediaQuery.of(context).size.height * 0.8,
+                  height: MediaQuery.of(context).size.height * 0.68,
                   child: ListView.builder(
                     physics: BouncingScrollPhysics(),
                     itemCount: 5,
