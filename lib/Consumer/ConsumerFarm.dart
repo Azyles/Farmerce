@@ -3,7 +3,12 @@
 import 'package:flutter/material.dart';
 
 class FarmViewScreen extends StatefulWidget {
-  FarmViewScreen({Key key}) : super(key: key);
+  var farmID = "";
+
+  FarmViewScreen(id) {
+    farmID = id;
+  }
+
 
   @override
   _FarmViewScreenState createState() => _FarmViewScreenState();
