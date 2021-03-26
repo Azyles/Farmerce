@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'dart:math';
 
+import 'package:geolocator/geolocator.dart';
+
 class ConsumerHome extends StatefulWidget {
   ConsumerHome({Key key}) : super(key: key);
 
@@ -26,16 +28,27 @@ class _ConsumerHomeState extends State<ConsumerHome> {
     return 12742 * asin(sqrt(a));
   }
 
+  var location = null;
+
   Future getLocation() {
-    Geolocator
-      .getCurrentPosition(desiredAccuracy: LocationAccuracy.best, forceAndroidLocationManager: true)
-      .then((Position position) {
-        setState(() {
-          _currentPosition = position;
-        });
-      }).catchError((e) {
-        print(e);
+    Geolocator.getCurrentPosition(
+            desiredAccuracy: LocationAccuracy.best,
+            forceAndroidLocationManager: true)
+        .then((Position position) {
+      setState(() {
+        location = position;
       });
+    }).catchError((e) {
+      print(e);
+    });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    getLocation();
   }
 
   @override
