@@ -1,4 +1,5 @@
 import 'package:farmerce/Consumer/ConsumerHome.dart';
+import 'package:farmerce/Consumer/consumerSignup.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -59,7 +60,19 @@ class _ConsumerLoginState extends State<ConsumerLogin> {
               onPressed: () async {
                 login();
               },
-            )
+            ),
+            GestureDetector(
+              child: Text(
+                "Register",
+                style: TextStyle(color: Colors.black),
+              ),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ConsumerRegister()));
+              },
+            ),
           ],
         ),
       ),
