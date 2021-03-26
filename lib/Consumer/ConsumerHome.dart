@@ -62,6 +62,12 @@ class _ConsumerHomeState extends State<ConsumerHome> {
                   ),
                 ),
               ),
+              StreamBuilder(
+                stream: FirebaseFirestore,
+                builder: (context, snap) {
+
+                },
+              ),
               Container(
                 margin: EdgeInsets.only(top: 10),
                 height: MediaQuery.of(context).size.height * 0.75,
