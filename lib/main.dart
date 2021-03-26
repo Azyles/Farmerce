@@ -10,15 +10,16 @@ import 'Business/BusinessItem.dart';
 import 'Farmers/Farmer.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(
     MyApp(),
   );
 
-  Firebase.initializeApp();
 }
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
+  final Future<FirebaseApp> _initialization = Firebase.initializeApp();
 
   @override
   Widget build(BuildContext context) {
