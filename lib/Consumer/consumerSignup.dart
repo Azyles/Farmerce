@@ -1,3 +1,4 @@
+import 'package:farmerce/Consumer/consumerLogin.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -53,11 +54,17 @@ class _ConsumerRegisterState extends State<ConsumerRegister> {
                           .createUserWithEmailAndPassword(
                               email: userNameController.text,
                               password: password)
-                          .then((value) {});
+                          .then((value) {})
+                          .catchError((e) {
+                        print("ERROR: " + e.message);
+                        setState(() {
+                          errText = e.message;
+                        });
+                      });
                     } catch (e) {
                       print(e);
                       setState(() {
-                        errText = e.toString();
+                        errText = e.text;
                       });
                     }
                   } else {
@@ -71,7 +78,17 @@ class _ConsumerRegisterState extends State<ConsumerRegister> {
                   setState(() {});
                 }
               },
-            )
+            ),
+            GestureDetector(
+              child: Text(
+                "Login",
+                style: TextStyle(color: Colors.black),
+              ),
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => ConsumerLogin()));
+              },
+            ),
           ],
         ),
       ),
