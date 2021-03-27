@@ -3,6 +3,7 @@ import 'package:farmerce/Consumer/ConsumerHome.dart';
 import 'package:farmerce/Consumer/ConsumerPurchase.dart';
 import 'package:farmerce/chooseAccountType.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/cupertino.dart';
 import './Farmers/FarmerContracts.dart';
 import 'package:flutter/material.dart';
 import 'Business/BusinessHome.dart';
@@ -38,7 +39,7 @@ class SignInView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(8, 8, 8, 1),
+      backgroundColor: Color.fromRGBO(12, 12, 12, 1),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -76,8 +77,9 @@ class SignInView extends StatelessWidget {
                 Center(
                   child: Container(
                     decoration: BoxDecoration(
-                        border: Border.all(color: Colors.grey[900], width: 2),
-                        color: Color.fromRGBO(40, 40, 40, 0.4),
+                        border: Border.all(
+                            color: Color.fromRGBO(30, 30, 30, 0.9), width: 2),
+                        color: Color.fromRGBO(30, 30, 30, 0.4),
                         borderRadius: BorderRadius.circular(10)),
                     child: Center(
                       child: Padding(
@@ -87,7 +89,7 @@ class SignInView extends StatelessWidget {
                           controller: _emailController,
                           keyboardType: TextInputType.emailAddress,
                           decoration: InputDecoration(
-                              hintStyle: TextStyle(color: Colors.white),
+                              hintStyle: TextStyle(color: Colors.grey),
                               border: InputBorder.none,
                               hintText: 'Email'),
                           validator: (value) {
@@ -99,7 +101,7 @@ class SignInView extends StatelessWidget {
                         ),
                       ),
                     ),
-                    height: MediaQuery.of(context).size.height * 0.06,
+                    height: MediaQuery.of(context).size.height * 0.07,
                     width: MediaQuery.of(context).size.width * 0.85,
                   ),
                 ),
@@ -109,8 +111,9 @@ class SignInView extends StatelessWidget {
                 Center(
                   child: Container(
                     decoration: BoxDecoration(
-                        border: Border.all(color: Colors.grey[900], width: 2),
-                        color: Color.fromRGBO(40, 40, 40, 0.4),
+                        border: Border.all(
+                            color: Color.fromRGBO(30, 30, 30, 0.9), width: 2),
+                        color: Color.fromRGBO(30, 30, 30, 0.4),
                         borderRadius: BorderRadius.circular(10)),
                     child: Center(
                       child: Padding(
@@ -120,7 +123,7 @@ class SignInView extends StatelessWidget {
                           controller: _passwordController,
                           obscureText: true,
                           decoration: InputDecoration(
-                              hintStyle: TextStyle(color: Colors.white),
+                              hintStyle: TextStyle(color: Colors.grey),
                               border: InputBorder.none,
                               hintText: 'Password'),
                           validator: (value) {
@@ -132,7 +135,7 @@ class SignInView extends StatelessWidget {
                         ),
                       ),
                     ),
-                    height: MediaQuery.of(context).size.height * 0.06,
+                    height: MediaQuery.of(context).size.height * 0.07,
                     width: MediaQuery.of(context).size.width * 0.85,
                   ),
                 ),
@@ -146,6 +149,24 @@ class SignInView extends StatelessWidget {
             height: MediaQuery.of(context).size.height * 0.02,
           ),
           Spacer(),
+          GestureDetector(
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => SignUpView()));
+            },
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 20),
+              child: Center(
+                child: Text(
+                  'Dont have an account? Sign Up',
+                  style: TextStyle(
+                      color: Colors.grey[700],
+                      fontSize: MediaQuery.of(context).size.height * 0.016,
+                      fontWeight: FontWeight.w500),
+                ),
+              ),
+            ),
+          ),
           Center(
             child: Container(
               child: new Material(
@@ -191,14 +212,6 @@ class SignInView extends StatelessWidget {
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => SignUpView()));
-        },
-        backgroundColor: Colors.lightGreen[900],
-        child: Icon(Icons.wb_cloudy),
-      ),
     );
   }
 }
@@ -209,6 +222,12 @@ class SignUpView extends StatefulWidget {
 }
 
 class _SignUpViewState extends State<SignUpView> {
+  int segmentedControlGroupValue = 0;
+  final Map<int, Widget> myTabs = const <int, Widget>{
+    0: Text("Item 1"),
+    1: Text("Item 2")
+  };
+
   final _formKey = new GlobalKey<FormState>();
 
   final TextEditingController _usernameController = TextEditingController();
@@ -220,7 +239,7 @@ class _SignUpViewState extends State<SignUpView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Color.fromRGBO(12, 12, 12, 1),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -251,6 +270,55 @@ class _SignUpViewState extends State<SignUpView> {
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.10,
           ),
+          Center(
+            child: Container(
+              width: MediaQuery.of(context).size.width * 0.8,
+              child: CupertinoSlidingSegmentedControl(
+                  backgroundColor: Color.fromRGBO(30, 30, 30, 0.7),
+                  thumbColor: Color.fromRGBO(70, 70, 70, 1),
+                  children: <int, Widget>{
+                    0: Container(
+                      width: 40,
+                      height: 20,
+                      child: Center(
+                        child: Text(
+                          "Customer",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ),
+                    1: Container(
+                      width: 40,
+                      height: 20,
+                      child: Center(
+                        child: Text(
+                          "Farmer",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ),
+                    2: Container(
+                      width: 40,
+                      height: 20,
+                      child: Center(
+                        child: Text(
+                          "Business",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ),
+                  },
+                  groupValue: segmentedControlGroupValue,
+                  onValueChanged: (i) {
+                    setState(() {
+                      segmentedControlGroupValue = i;
+                    });
+                  }),
+            ),
+          ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.02,
+          ),
           Form(
             key: _formKey,
             child: Column(
@@ -258,8 +326,9 @@ class _SignUpViewState extends State<SignUpView> {
                 Center(
                   child: Container(
                     decoration: BoxDecoration(
-                        border: Border.all(color: Colors.grey[900], width: 2),
-                        color: Color.fromRGBO(40, 40, 40, 0.4),
+                        border: Border.all(
+                            color: Color.fromRGBO(30, 30, 30, 0.9), width: 2),
+                        color: Color.fromRGBO(30, 30, 30, 0.4),
                         borderRadius: BorderRadius.circular(10)),
                     child: Center(
                       child: Padding(
@@ -269,7 +338,7 @@ class _SignUpViewState extends State<SignUpView> {
                           controller: _usernameController,
                           keyboardType: TextInputType.name,
                           decoration: InputDecoration(
-                              hintStyle: TextStyle(color: Colors.white),
+                              hintStyle: TextStyle(color: Colors.grey),
                               border: InputBorder.none,
                               hintText: 'UserName'),
                           validator: (value) {
@@ -281,7 +350,7 @@ class _SignUpViewState extends State<SignUpView> {
                         ),
                       ),
                     ),
-                    height: MediaQuery.of(context).size.height * 0.06,
+                    height: MediaQuery.of(context).size.height * 0.07,
                     width: MediaQuery.of(context).size.width * 0.85,
                   ),
                 ),
@@ -291,8 +360,9 @@ class _SignUpViewState extends State<SignUpView> {
                 Center(
                   child: Container(
                     decoration: BoxDecoration(
-                        border: Border.all(color: Colors.grey[900], width: 2),
-                        color: Color.fromRGBO(40, 40, 40, 0.4),
+                        border: Border.all(
+                            color: Color.fromRGBO(30, 30, 30, 0.9), width: 2),
+                        color: Color.fromRGBO(30, 30, 30, 0.4),
                         borderRadius: BorderRadius.circular(10)),
                     child: Center(
                       child: Padding(
@@ -302,7 +372,7 @@ class _SignUpViewState extends State<SignUpView> {
                           controller: _emailController,
                           keyboardType: TextInputType.emailAddress,
                           decoration: InputDecoration(
-                              hintStyle: TextStyle(color: Colors.white),
+                              hintStyle: TextStyle(color: Colors.grey),
                               border: InputBorder.none,
                               hintText: 'Email'),
                           validator: (value) {
@@ -314,7 +384,7 @@ class _SignUpViewState extends State<SignUpView> {
                         ),
                       ),
                     ),
-                    height: MediaQuery.of(context).size.height * 0.06,
+                    height: MediaQuery.of(context).size.height * 0.07,
                     width: MediaQuery.of(context).size.width * 0.85,
                   ),
                 ),
@@ -324,8 +394,9 @@ class _SignUpViewState extends State<SignUpView> {
                 Center(
                   child: Container(
                     decoration: BoxDecoration(
-                        border: Border.all(color: Colors.grey[900], width: 2),
-                        color: Color.fromRGBO(40, 40, 40, 0.4),
+                        border: Border.all(
+                            color: Color.fromRGBO(30, 30, 30, 0.9), width: 2),
+                        color: Color.fromRGBO(30, 30, 30, 0.4),
                         borderRadius: BorderRadius.circular(10)),
                     child: Center(
                       child: Padding(
@@ -335,7 +406,7 @@ class _SignUpViewState extends State<SignUpView> {
                           controller: _passwordController,
                           obscureText: true,
                           decoration: InputDecoration(
-                              hintStyle: TextStyle(color: Colors.white),
+                              hintStyle: TextStyle(color: Colors.grey),
                               border: InputBorder.none,
                               hintText: 'Password'),
                           validator: (value) {
@@ -347,7 +418,7 @@ class _SignUpViewState extends State<SignUpView> {
                         ),
                       ),
                     ),
-                    height: MediaQuery.of(context).size.height * 0.06,
+                    height: MediaQuery.of(context).size.height * 0.07,
                     width: MediaQuery.of(context).size.width * 0.85,
                   ),
                 ),
@@ -361,6 +432,24 @@ class _SignUpViewState extends State<SignUpView> {
             height: MediaQuery.of(context).size.height * 0.02,
           ),
           Spacer(),
+          GestureDetector(
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => SignInView()));
+            },
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 20),
+              child: Center(
+                child: Text(
+                  'Have an account? Sign In',
+                  style: TextStyle(
+                      color: Colors.grey[700],
+                      fontSize: MediaQuery.of(context).size.height * 0.016,
+                      fontWeight: FontWeight.w500),
+                ),
+              ),
+            ),
+          ),
           Center(
             child: Container(
               child: new Material(
@@ -417,14 +506,6 @@ class _SignUpViewState extends State<SignUpView> {
           ),
           */
         ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => SignInView()));
-        },
-        backgroundColor: Colors.lightGreen[900],
-        child: Icon(Icons.wb_cloudy),
       ),
     );
   }
