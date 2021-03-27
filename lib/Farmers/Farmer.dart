@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
-import './FarmerContracts.dart';
+import 'FarmerHome.dart';
 
 class Example extends StatefulWidget {
   @override
@@ -15,7 +15,7 @@ class _ExampleState extends State<Example> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      body: FarmerContracts(),
+      //body: FarmerContracts(),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.only(top:10),
         child: BottomNavigationBar(
