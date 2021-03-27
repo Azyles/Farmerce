@@ -1,6 +1,8 @@
 import 'package:farmerce/Consumer/ConsumerHome.dart';
+import 'package:farmerce/Farmers/FarmerHome.dart';
 import 'package:farmerce/signup.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class SignInView extends StatefulWidget {
@@ -19,6 +21,8 @@ class _SignInViewState extends State<SignInView> {
   TextEditingController userNameController = new TextEditingController();
   TextEditingController passwordController = new TextEditingController();
   TextEditingController repeatPasswordController = new TextEditingController();
+
+  int segmentedControlGroupValue = 0;
 
   var errText = "";
 
@@ -55,6 +59,55 @@ class _SignInViewState extends State<SignInView> {
           ),
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.10,
+          ),
+          Center(
+            child: Container(
+              width: MediaQuery.of(context).size.width * 0.8,
+              child: CupertinoSlidingSegmentedControl(
+                  backgroundColor: Color.fromRGBO(30, 30, 30, 0.7),
+                  thumbColor: Color.fromRGBO(70, 70, 70, 1),
+                  children: <int, Widget>{
+                    0: Container(
+                      width: 80,
+                      height: 20,
+                      child: Center(
+                        child: Text(
+                          "Customer",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ),
+                    1: Container(
+                      width: 80,
+                      height: 20,
+                      child: Center(
+                        child: Text(
+                          "Farmer",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ),
+                    2: Container(
+                      width: 80,
+                      height: 20,
+                      child: Center(
+                        child: Text(
+                          "Business",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ),
+                  },
+                  groupValue: segmentedControlGroupValue,
+                  onValueChanged: (i) {
+                    setState(() {
+                      segmentedControlGroupValue = i;
+                    });
+                  }),
+            ),
+          ),
+          SizedBox(
+            height: 50,
           ),
           Form(
             key: _formKey,
@@ -154,10 +207,22 @@ class _SignInViewState extends State<SignInView> {
                           .then((value) {
                         errText = "logged in";
 
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => ConsumerHome()));
+                        if (segmentedControlGroupValue == 0) {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ConsumerHome()));
+                        } else if (segmentedControlGroupValue == 1) {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => FarmerHome()));
+                        } else if (segmentedControlGroupValue == 2) {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ConsumerHome()));
+                        }
                       });
                     } catch (e) {
                       errText = "Incorrect credentails";

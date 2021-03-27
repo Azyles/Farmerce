@@ -21,7 +21,7 @@ class _SignUpViewState extends State<SignUpView> {
 
   final TextEditingController _passwordController = TextEditingController();
 
-  var errText = 'errkjhkh';
+  var errText = '';
 
   @override
   Widget build(BuildContext context) {
@@ -199,7 +199,7 @@ class _SignUpViewState extends State<SignUpView> {
             ),
           ),
           Container(
-            margin: EdgeInsets.only(left: 15),
+            margin: EdgeInsets.only(left: 35),
             child: Text(
               errText,
               style: TextStyle(color: Colors.red),
@@ -244,8 +244,12 @@ class _SignUpViewState extends State<SignUpView> {
                           FirebaseAuth.instance
                               .createUserWithEmailAndPassword(
                                   email: username, password: password)
-                              .then((value) {})
-                              .catchError((e) {
+                              .then((value) {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => SignInView()));
+                          }).catchError((e) {
                             print("ERROR: " + e.message);
                             setState(() {
                               errText = e.message;
