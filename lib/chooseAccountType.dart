@@ -22,21 +22,21 @@ class _ChooseAccountScreenState extends State<ChooseAccountScreen> {
                 height: 100,
               ),
               RaisedButton(
-                child: Text("Customer Portal"),
+                child: Text("Customer"),
                 onPressed: () {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => ConsumerLogin()));
                 },
               ),
               RaisedButton(
-                child: Text("Farmer Portal"),
+                child: Text("Farmer"),
                 onPressed: () {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => ConsumerHome()));
                 },
               ),
               RaisedButton(
-                child: Text("Business Portal"),
+                child: Text("Business"),
                 onPressed: () {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => ConsumerHome()));
