@@ -4,7 +4,6 @@ import 'package:farmerce/Consumer/ConsumerPurchase.dart';
 import 'package:farmerce/chooseAccountType.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
-import './Farmers/FarmerContracts.dart';
 import 'package:flutter/material.dart';
 import 'Business/BusinessHome.dart';
 import 'Business/BusinessItem.dart';
