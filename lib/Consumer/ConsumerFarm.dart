@@ -2,6 +2,7 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:farmerce/Consumer/ConsumerHome.dart';
+import 'package:farmerce/Consumer/ConsumerPurchase.dart';
 import 'package:flutter/material.dart';
 
 class FarmViewScreen extends StatefulWidget {
@@ -119,7 +120,9 @@ class _FarmViewScreenState extends State<FarmViewScreen> {
                         width: MediaQuery.of(context).size.width * 0.9,
                         height: 45,
                         child: RaisedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => ConsumerPurchase(widget.farmID)));
+                          },
                           color: Color.fromRGBO(131, 194, 100, 1),
                           child: Text(
                             "Browse",
