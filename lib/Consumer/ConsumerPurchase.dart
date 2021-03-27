@@ -17,7 +17,7 @@ class ConsumerPurchase extends StatefulWidget {
 }
 
 class _ConsumerPurchaseState extends State<ConsumerPurchase> {
-  List checks = [true, false, true, false, true];
+  List checks = [];
 
   @override
   Widget build(BuildContext context) {
@@ -44,13 +44,13 @@ class _ConsumerPurchaseState extends State<ConsumerPurchase> {
                 .collection("Items")
                 .snapshots(),
             builder: (context, snap) {
-              var data = [];
-
-              snap.data.docs.forEach((doc) {
-                data.add(doc.data());
-              });
-
               if (snap.hasData) {
+                var data = [];
+
+                snap.data.docs.forEach((doc) {
+                  data.add(doc.data());
+                  checks.add(false);
+                });
                 return SingleChildScrollView(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,

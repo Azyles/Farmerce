@@ -121,7 +121,11 @@ class _FarmViewScreenState extends State<FarmViewScreen> {
                         height: 45,
                         child: RaisedButton(
                           onPressed: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => ConsumerPurchase(widget.farmID)));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ConsumerPurchase(
+                                        widget.farmID, data['name'])));
                           },
                           color: Color.fromRGBO(131, 194, 100, 1),
                           child: Text(
