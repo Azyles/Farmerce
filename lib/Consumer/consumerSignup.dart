@@ -3,8 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class ConsumerRegister extends StatefulWidget {
-  ConsumerRegister({Key key}) : super(key: key);
-
   @override
   _ConsumerRegisterState createState() => _ConsumerRegisterState();
 }
