@@ -182,9 +182,9 @@ class SignInView extends StatelessWidget {
                   child: new Container(
                     child: Center(
                       child: Text(
-                        'Sign up',
+                        'Sign In',
                         style: TextStyle(
-                            color: Colors.black,
+                            color: Colors.white,
                             fontSize:
                                 MediaQuery.of(context).size.height * 0.020,
                             fontWeight: FontWeight.w600),
@@ -202,7 +202,7 @@ class SignInView extends StatelessWidget {
               height: MediaQuery.of(context).size.height * 0.07,
               width: MediaQuery.of(context).size.width * 0.80,
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: Colors.lightGreen[600],
                 borderRadius: BorderRadius.circular(10),
               ),
             ),
@@ -467,7 +467,7 @@ class _SignUpViewState extends State<SignUpView> {
                       child: Text(
                         'Sign up',
                         style: TextStyle(
-                            color: Colors.black,
+                            color: Colors.white,
                             fontSize:
                                 MediaQuery.of(context).size.height * 0.020,
                             fontWeight: FontWeight.w600),
@@ -485,7 +485,7 @@ class _SignUpViewState extends State<SignUpView> {
               height: MediaQuery.of(context).size.height * 0.07,
               width: MediaQuery.of(context).size.width * 0.80,
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: Colors.lightGreen[600],
                 borderRadius: BorderRadius.circular(10),
               ),
             ),
