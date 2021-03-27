@@ -1,7 +1,9 @@
 // Buy item
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:farmerce/Consumer/ConsumerHome.dart';
 import 'package:flutter/material.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 class ConsumerPurchase extends StatefulWidget {
   var farmID = '';
@@ -152,7 +154,31 @@ class _ConsumerPurchaseState extends State<ConsumerPurchase> {
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10),
                               ),
-                              onPressed: () {},
+                              onPressed: () {
+                                Alert(
+                                  context: context,
+                                  type: AlertType.success,
+                                  title: "Order Confirmed",
+                                  desc: "Your order has been confirmed",
+                                  buttons: [
+                                    DialogButton(
+                                      child: Text(
+                                        "Ok",
+                                        style: TextStyle(
+                                            color: Colors.white, fontSize: 20),
+                                      ),
+                                      onPressed: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    ConsumerHome()));
+                                      },
+                                      color: Color.fromRGBO(0, 179, 134, 1.0),
+                                    ),
+                                  ],
+                                ).show();
+                              },
                               color: Color.fromRGBO(131, 194, 100, 1),
                               child: Text(
                                 "Purchase",
