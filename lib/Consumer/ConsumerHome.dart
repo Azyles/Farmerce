@@ -125,8 +125,10 @@ class _ConsumerHomeState extends State<ConsumerHome> {
                               locationString = calculateDistance(
                                           latitude,
                                           longitude,
-                                          37.763743778435064,
-                                          -121.49973157653022)
+                                          data[index]['value']['location']
+                                              .latitude,
+                                          data[index]['value']['location']
+                                              .longitude)
                                       .toStringAsFixed(1) +
                                   " mi away";
 
