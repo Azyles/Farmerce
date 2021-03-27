@@ -116,6 +116,24 @@ class _ConsumerHomeState extends State<ConsumerHome> {
                           physics: BouncingScrollPhysics(),
                           itemCount: data.length,
                           itemBuilder: (context, index) {
+                            var locationString = 'Loading';
+
+                            if (location != null) {
+                              var latitude = location.latitude;
+                              var longitude = location.longitude;
+
+                              locationString = calculateDistance(
+                                          latitude,
+                                          longitude,
+                                          37.763743778435064,
+                                          -121.49973157653022)
+                                      .toStringAsFixed(1) +
+                                  " mi away";
+
+                              print(locationString.toString() + " miles away");
+                            } else {
+                              locationString = "No location";
+                            }
                             return GestureDetector(
                               onTap: () {
                                 Navigator.push(
@@ -157,15 +175,16 @@ class _ConsumerHomeState extends State<ConsumerHome> {
                                               children: [
                                                 Container(
                                                   margin: EdgeInsets.only(
-                                                      top: 10, left: 10),
-                                                  child: Text("20 mi away",
+                                                      top: 15, left: 10),
+                                                  child: Text(locationString,
                                                       style: TextStyle(
-                                                          color: Colors
-                                                              .grey[100])),
+                                                          color:
+                                                              Colors.grey[300],
+                                                          fontSize: 13)),
                                                 ),
                                                 Container(
                                                   margin: EdgeInsets.only(
-                                                      top: 5, left: 10),
+                                                      top: 1, left: 10),
                                                   child: Text(
                                                     data[index]['value']
                                                         ['name'],
