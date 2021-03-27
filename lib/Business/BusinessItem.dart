@@ -475,7 +475,7 @@ class _ItemPurchaseState extends State<ItemPurchase> {
                                               max: 100,
                                               activeColor: Color.fromRGBO(
                                                   131, 194, 100, 1),
-                                              divisions: 1,
+                                              divisions: 100,
                                               inactiveColor: Colors.grey[200],
                                               label: _currentSliderValue
                                                   .round()
