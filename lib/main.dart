@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'Business/BusinessHome.dart';
 import 'Business/BusinessItem.dart';
 import 'Farmers/Farmer.dart';
-import 'package:material_segmented_control/material_segmented_control.dart';
+
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(
@@ -67,7 +67,7 @@ class SignInView extends StatelessWidget {
                 Center(
                   child: Container(
                     decoration: BoxDecoration(
-                      border: Border.all(color: Colors.deepOrange,width: 2),
+                      border: Border.all(color: Colors.grey[700],width: 2),
                     color: Color.fromRGBO(24, 24, 24, 0),
                     
                     borderRadius: BorderRadius.circular(10)
@@ -101,7 +101,7 @@ class SignInView extends StatelessWidget {
                 Center(
                   child: Container(
                     decoration: BoxDecoration(
-                      border: Border.all(color: Colors.deepOrange,width: 2),
+                      border: Border.all(color: Colors.grey[700],width: 2),
                     color: Color.fromRGBO(24, 24, 24, 0),
                     borderRadius: BorderRadius.circular(10)
                     ),
@@ -181,7 +181,7 @@ class SignInView extends StatelessWidget {
           Navigator.push(context,
                             MaterialPageRoute(builder: (context) => SignUpView()));
         },
-        backgroundColor: Colors.deepOrange[300],child: Icon(Icons.wb_cloudy),),
+        backgroundColor: Colors.lightGreen[700],child: Icon(Icons.wb_cloudy),),
         );
   }
 }
@@ -234,7 +234,7 @@ class _SignUpViewState extends State<SignUpView> {
                 Center(
                   child: Container(
                     decoration: BoxDecoration(
-                        border: Border.all(color: Colors.deepOrange, width: 2),
+                        border: Border.all(color: Colors.grey[700], width: 2),
                         color: Color.fromRGBO(24, 24, 24, 0),
                         borderRadius: BorderRadius.circular(10)),
                     child: Center(
@@ -267,7 +267,7 @@ class _SignUpViewState extends State<SignUpView> {
                 Center(
                   child: Container(
                     decoration: BoxDecoration(
-                        border: Border.all(color: Colors.deepOrange, width: 2),
+                        border: Border.all(color: Colors.grey[700], width: 2),
                         color: Color.fromRGBO(24, 24, 24, 0),
                         borderRadius: BorderRadius.circular(10)),
                     child: Center(
@@ -300,7 +300,7 @@ class _SignUpViewState extends State<SignUpView> {
                 Center(
                   child: Container(
                     decoration: BoxDecoration(
-                        border: Border.all(color: Colors.deepOrange, width: 2),
+                        border: Border.all(color: Colors.grey[700], width: 2),
                         color: Color.fromRGBO(24, 24, 24, 0),
                         borderRadius: BorderRadius.circular(10)),
                     child: Center(
@@ -396,7 +396,7 @@ class _SignUpViewState extends State<SignUpView> {
           Navigator.push(
               context, MaterialPageRoute(builder: (context) => SignInView()));
         },
-        backgroundColor: Colors.deepOrange[300],
+        backgroundColor: Colors.lightGreen[700],
         child: Icon(Icons.wb_cloudy),
       ),
     );
