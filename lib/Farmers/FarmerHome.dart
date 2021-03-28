@@ -42,6 +42,7 @@ class _FarmerHomeState extends State<FarmerHome> {
             width: MediaQuery.of(context).size.width,
             child: ListView(
               shrinkWrap: true,
+              physics: BouncingScrollPhysics(),
               padding: const EdgeInsets.symmetric(horizontal: 30),
               children: <Widget>[
                 Container(
@@ -67,93 +68,6 @@ class _FarmerHomeState extends State<FarmerHome> {
                               style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 18,
-                                  fontWeight: FontWeight.w300),
-                            )),
-                        Padding(
-                            padding: EdgeInsets.only(left: 15),
-                            child: Text(
-                              "2,000",
-                              style: TextStyle(
-                                  color: Colors.grey.shade800,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w300),
-                            )),
-                        Padding(
-                            padding: EdgeInsets.only(left: 15),
-                            child: Text(
-                              "7 Days",
-                              style: TextStyle(
-                                  color: Colors.grey.shade800,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w300),
-                            )),
-                        Padding(
-                            padding: EdgeInsets.only(left: 15),
-                            child: Text(
-                              "250",
-                              style: TextStyle(
-                                  color: Colors.grey.shade800,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w300),
-                            )),
-                        Spacer(),
-                        Icon(
-                          Icons.arrow_right_rounded,
-                          color: Colors.grey.shade800,
-                          size: 30,
-                        )
-                      ],
-                    )),
-                Container(
-                    height: 70,
-                    child: Row(
-                      children: [
-                        Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15),
-                              color: Colors.red.withOpacity(0.20)),
-                          height: 55,
-                          width: 55,
-                          child: Padding(
-                            padding: EdgeInsets.all(10),
-                            child: Image.network(
-                                "https://jonamacorchard.com/new/wp-content/uploads/2018/04/jonamac-orchard-zestar_258x258_acf_cropped.png"),
-                          ),
-                        ),
-                        Padding(
-                            padding: EdgeInsets.only(left: 25),
-                            child: Text(
-                              "Apples",
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w300),
-                            )),
-                        Padding(
-                            padding: EdgeInsets.only(left: 15),
-                            child: Text(
-                              "2,000",
-                              style: TextStyle(
-                                  color: Colors.grey.shade800,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w300),
-                            )),
-                        Padding(
-                            padding: EdgeInsets.only(left: 15),
-                            child: Text(
-                              "7 Days",
-                              style: TextStyle(
-                                  color: Colors.grey.shade800,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w300),
-                            )),
-                        Padding(
-                            padding: EdgeInsets.only(left: 15),
-                            child: Text(
-                              "250",
-                              style: TextStyle(
-                                  color: Colors.grey.shade800,
-                                  fontSize: 15,
                                   fontWeight: FontWeight.w300),
                             )),
                         Spacer(),
@@ -186,6 +100,7 @@ class _FarmerHomeState extends State<FarmerHome> {
               child: Container(
             width: MediaQuery.of(context).size.width,
             child: ListView(
+              physics: BouncingScrollPhysics(),
               shrinkWrap: true,
               padding: const EdgeInsets.symmetric(horizontal: 30),
               children: <Widget>[
