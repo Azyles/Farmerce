@@ -74,10 +74,10 @@ class _FarmerHomeState extends State<FarmerHome> {
                         var data = [];
 
                         snap.data.docs.forEach((doc) {
-                          data.add(doc);
+                          data.add(doc.data());
                         });
 
-                        for (var x = 0; x < data.length; x++) {
+                        for (var x = 0; x <= data.length - 1; x++) {
                           return Flexible(
                               child: Container(
                             width: MediaQuery.of(context).size.width,
@@ -108,7 +108,7 @@ class _FarmerHomeState extends State<FarmerHome> {
                                         Padding(
                                             padding: EdgeInsets.only(left: 25),
                                             child: Text(
-                                              "",
+                                              data[x]["item"],
                                               style: TextStyle(
                                                   color: Colors.white,
                                                   fontSize: 18,
