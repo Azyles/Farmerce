@@ -14,6 +14,8 @@ class _FarmerHomeState extends State<FarmerHome> {
 
   final FirebaseAuth auth = FirebaseAuth.instance;
 
+  var current = 0;
+
   @override
   Widget build(BuildContext context) {
     print(auth.currentUser.email);
@@ -62,50 +64,80 @@ class _FarmerHomeState extends State<FarmerHome> {
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.03,
                   ),
-                  Flexible(
-                      child: Container(
-                    width: MediaQuery.of(context).size.width,
-                    child: ListView(
-                      shrinkWrap: true,
-                      physics: BouncingScrollPhysics(),
-                      padding: const EdgeInsets.symmetric(horizontal: 30),
-                      children: <Widget>[
-                        Container(
-                            height: 70,
-                            child: Row(
-                              children: [
+                  StreamBuilder(
+                    stream: FirebaseFirestore.instance
+                        .collection("Contracts")
+                        .where("owner", isEqualTo: auth.currentUser.email)
+                        .snapshots(),
+                    builder: (context, snap) {
+                      if (snap.hasData) {
+                        var data = [];
+
+                        snap.data.docs.forEach((doc) {
+                          data.add(doc);
+                        });
+
+                        for (var x = 0; x < data.length; x++) {
+                          return Flexible(
+                              child: Container(
+                            width: MediaQuery.of(context).size.width,
+                            child: ListView(
+                              shrinkWrap: true,
+                              physics: BouncingScrollPhysics(),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 30),
+                              children: <Widget>[
                                 Container(
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(15),
-                                      color: Colors.red.withOpacity(0.20)),
-                                  height: 55,
-                                  width: 55,
-                                  child: Padding(
-                                    padding: EdgeInsets.all(10),
-                                    child: Image.network(
-                                        "https://jonamacorchard.com/new/wp-content/uploads/2018/04/jonamac-orchard-zestar_258x258_acf_cropped.png"),
-                                  ),
-                                ),
-                                Padding(
-                                    padding: EdgeInsets.only(left: 25),
-                                    child: Text(
-                                      "Apples",
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.w300),
+                                    height: 70,
+                                    child: Row(
+                                      children: [
+                                        Container(
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(15),
+                                              color:
+                                                  Colors.red.withOpacity(0.20)),
+                                          height: 55,
+                                          width: 55,
+                                          child: Padding(
+                                            padding: EdgeInsets.all(10),
+                                            child: Image.network(
+                                                "https://jonamacorchard.com/new/wp-content/uploads/2018/04/jonamac-orchard-zestar_258x258_acf_cropped.png"),
+                                          ),
+                                        ),
+                                        Padding(
+                                            padding: EdgeInsets.only(left: 25),
+                                            child: Text(
+                                              "",
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.w300),
+                                            )),
+                                        Spacer(),
+                                        Icon(
+                                          Icons.arrow_right_rounded,
+                                          color: Colors.grey.shade800,
+                                          size: 30,
+                                        )
+                                      ],
                                     )),
-                                Spacer(),
-                                Icon(
-                                  Icons.arrow_right_rounded,
-                                  color: Colors.grey.shade800,
-                                  size: 30,
-                                )
                               ],
-                            )),
-                      ],
-                    ),
-                  )),
+                            ),
+                          ));
+                        }
+                      } else {
+                        return Container(
+                          child: Center(
+                            child: Text(
+                              "No Active Contracts",
+                              style: TextStyle(color: Colors.grey),
+                            ),
+                          ),
+                        );
+                      }
+                    },
+                  ),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.02,
                   ),
@@ -454,7 +486,8 @@ class _FarmerHomeState extends State<FarmerHome> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => AddContract()));
+                                    builder: (context) =>
+                                        AddContract(data['name'])));
                           },
                           child: Container(
                             decoration: BoxDecoration(
@@ -484,7 +517,8 @@ class _FarmerHomeState extends State<FarmerHome> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => AddContract()));
+                                    builder: (context) =>
+                                        AddContract(data['name'])));
                           },
                           child: Container(
                             decoration: BoxDecoration(
