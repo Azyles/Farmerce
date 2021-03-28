@@ -1,4 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:farmerce/Farmers/FarmerHome.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:geocoder/geocoder.dart';
 
 class Farmsetup extends StatefulWidget {
   @override
@@ -6,6 +10,12 @@ class Farmsetup extends StatefulWidget {
 }
 
 class _FarmsetupState extends State<Farmsetup> {
+  var addressController = new TextEditingController();
+  var descriptionController = new TextEditingController();
+  var nameController = new TextEditingController();
+
+  final FirebaseAuth auth = FirebaseAuth.instance;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,18 +72,13 @@ class _FarmsetupState extends State<Farmsetup> {
                     padding: EdgeInsets.symmetric(horizontal: 20),
                     child: TextFormField(
                       style: TextStyle(color: Colors.white),
+                      controller: nameController,
                       //controller: _emailController,
                       keyboardType: TextInputType.emailAddress,
                       decoration: InputDecoration(
                           hintStyle: TextStyle(color: Colors.grey),
                           border: InputBorder.none,
                           hintText: 'Farm Name'),
-                      validator: (value) {
-                        if (value == null || value == '') {
-                          return 'Name cannot be blank';
-                        }
-                        return null;
-                      },
                     ),
                   ),
                 ),
@@ -94,6 +99,7 @@ class _FarmsetupState extends State<Farmsetup> {
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 20),
                     child: TextFormField(
+                      controller: addressController,
                       style: TextStyle(color: Colors.white),
                       //controller: _emailController,
                       keyboardType: TextInputType.emailAddress,
@@ -101,12 +107,6 @@ class _FarmsetupState extends State<Farmsetup> {
                           hintStyle: TextStyle(color: Colors.grey),
                           border: InputBorder.none,
                           hintText: 'Farm Address'),
-                      validator: (value) {
-                        if (value == null || value == '') {
-                          return 'Address cannot be blank';
-                        }
-                        return null;
-                      },
                     ),
                   ),
                 ),
@@ -127,6 +127,7 @@ class _FarmsetupState extends State<Farmsetup> {
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 20),
                     child: TextFormField(
+                      controller: descriptionController,
                       style: TextStyle(color: Colors.white),
                       //controller: _emailController,
                       keyboardType: TextInputType.emailAddress,
@@ -134,12 +135,6 @@ class _FarmsetupState extends State<Farmsetup> {
                           hintStyle: TextStyle(color: Colors.grey),
                           border: InputBorder.none,
                           hintText: 'Farm Description'),
-                      validator: (value) {
-                        if (value == null || value == '') {
-                          return 'Description cannot be blank';
-                        }
-                        return null;
-                      },
                     ),
                   ),
                 ),
@@ -155,7 +150,24 @@ class _FarmsetupState extends State<Farmsetup> {
             child: Container(
               child: new Material(
                 child: new InkWell(
-                  onTap: () async {},
+                  onTap: () async {
+                    var addresses = await Geocoder.local
+                        .findAddressesFromQuery(addressController.text);
+                    var first = addresses.first;
+
+                    FirebaseFirestore.instance.collection("Farms").doc().set({
+                      'owner': auth.currentUser.email,
+                      "description": descriptionController.text,
+                      "name": nameController.text,
+                      "longitude": first.coordinates.longitude,
+                      "latitude": first.coordinates.latitude,
+                      "imageURL":
+                          "https://cdn.dribbble.com/users/3949861/screenshots/14387811/media/8ac916cc3132b0d6f35a77605588671d.jpg?compress=1&resize=1000x750"
+                    }).then((value) {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => FarmerHome()));
+                    });
+
+                  },
                   child: new Container(
                     child: Center(
                       child: Text(
