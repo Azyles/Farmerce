@@ -479,15 +479,13 @@ class _FarmerHomeState extends State<FarmerHome> {
                         SizedBox(
                           width: 10,
                         ),
-
                         GestureDetector(
                           onTap: () {
-                              Navigator.push(
+                            Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => AddContract()));
                           },
-
                           child: Container(
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
