@@ -1,7 +1,15 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:farmerce/Farmers/FarmerHome.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
 class AddContract extends StatefulWidget {
+  var farmName = "";
+
+  AddContract(name) {
+    farmName = name;
+  }
   @override
   _AddContractState createState() => _AddContractState();
 }
@@ -9,6 +17,11 @@ class AddContract extends StatefulWidget {
 class _AddContractState extends State<AddContract> {
   bool isShowingMainData;
   double _currentSliderValue = 10;
+
+  final FirebaseAuth auth = FirebaseAuth.instance;
+
+  var itemNameController = new TextEditingController();
+
   @override
   void initState() {
     super.initState();
@@ -46,18 +59,13 @@ class _AddContractState extends State<AddContract> {
                     padding: EdgeInsets.symmetric(horizontal: 20),
                     child: TextFormField(
                       style: TextStyle(color: Colors.white),
+                      controller: itemNameController,
                       //controller: _emailController,
                       keyboardType: TextInputType.emailAddress,
                       decoration: InputDecoration(
                           hintStyle: TextStyle(color: Colors.grey),
                           border: InputBorder.none,
-                          hintText: 'Search'),
-                      validator: (value) {
-                        if (value == null || value == '') {
-                          return 'Email cannot be blank';
-                        }
-                        return null;
-                      },
+                          hintText: 'Produce Name'),
                     ),
                   ),
                 ),
@@ -344,7 +352,7 @@ class _AddContractState extends State<AddContract> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                "1.37",
+                                _currentSliderValue.toStringAsFixed(1),
                                 style: TextStyle(
                                     color: Colors.grey.shade200,
                                     fontSize: 20,
@@ -503,9 +511,9 @@ class _AddContractState extends State<AddContract> {
                   Slider(
                     value: _currentSliderValue,
                     min: 0,
-                    max: 100,
+                    max: 20,
                     activeColor: Color.fromRGBO(131, 194, 100, 1),
-                    divisions: 100,
+                    divisions: 200,
                     inactiveColor: Colors.grey[900],
                     label: _currentSliderValue.round().toString(),
                     onChanged: (double value) {
@@ -520,11 +528,48 @@ class _AddContractState extends State<AddContract> {
                       child: Container(
                         child: new Material(
                           child: new InkWell(
-                            onTap: () async {},
+                            onTap: () async {
+                              var imageURL = '';
+
+                              if (itemNameController.text.toLowerCase() ==
+                                  "apple") {
+                                imageURL =
+                                    "https://jonamacorchard.com/new/wp-content/uploads/2018/04/jonamac-orchard-zestar_258x258_acf_cropped.png";
+                              } else if (itemNameController.text
+                                      .toLowerCase() ==
+                                  "orange") {
+                                imageURL =
+                                    "https://www.sandjmandarins.com/wp-content/uploads/2019/03/Mandarin-Orange-PNG-Transparent-Image.png";
+                              } else if (itemNameController.text
+                                      .toLowerCase() ==
+                                  "mango") {
+                                imageURL =
+                                    "https://www.aweta.com/images/produces/overzicht/aweta-product-mango.png";
+                              } else {
+                                imageURL =
+                                    "https://jonamacorchard.com/new/wp-content/uploads/2018/04/jonamac-orchard-zestar_258x258_acf_cropped.png";
+                              }
+
+                              FirebaseFirestore.instance
+                                  .collection("Contracts")
+                                  .doc()
+                                  .set({
+                                "owner": auth.currentUser.email,
+                                "farm": widget.farmName,
+                                "price": _currentSliderValue.toStringAsFixed(2),
+                                "item": itemNameController.text,
+                                "imageURL": imageURL
+                              }).then((value) {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => FarmerHome()));
+                              });
+                            },
                             child: new Container(
                               child: Center(
                                 child: Text(
-                                  'Sign up',
+                                  'Create Contract',
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontSize:
