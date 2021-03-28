@@ -77,54 +77,75 @@ class _FarmerHomeState extends State<FarmerHome> {
                           data.add(doc.data());
                         });
 
-                        for (var x = 0; x <= data.length - 1; x++) {
-                          return Flexible(
-                              child: Container(
-                            width: MediaQuery.of(context).size.width,
-                            child: ListView(
-                              shrinkWrap: true,
-                              physics: BouncingScrollPhysics(),
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 30),
-                              children: <Widget>[
-                                Container(
-                                    height: 70,
-                                    child: Row(
-                                      children: [
-                                        Container(
-                                          decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(15),
-                                              color:
-                                                  Colors.red.withOpacity(0.20)),
-                                          height: 55,
-                                          width: 55,
-                                          child: Padding(
-                                            padding: EdgeInsets.all(10),
-                                            child: Image.network(
-                                                "https://jonamacorchard.com/new/wp-content/uploads/2018/04/jonamac-orchard-zestar_258x258_acf_cropped.png"),
-                                          ),
-                                        ),
-                                        Padding(
-                                            padding: EdgeInsets.only(left: 25),
-                                            child: Text(
-                                              data[x]["item"],
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 18,
-                                                  fontWeight: FontWeight.w300),
-                                            )),
-                                        Spacer(),
-                                        Icon(
-                                          Icons.arrow_right_rounded,
-                                          color: Colors.grey.shade800,
-                                          size: 30,
-                                        )
-                                      ],
-                                    )),
-                              ],
+                        if (data.length == 0) {
+                          return Container(
+                            child: Center(
+                              child: Text(
+                                "No Active Contracts",
+                                style: TextStyle(color: Colors.grey),
+                              ),
                             ),
-                          ));
+                          );
+                        } else {
+                          return Container(
+                            height: MediaQuery.of(context).size.height * 0.3,
+                            child: ListView.builder(
+                              physics: BouncingScrollPhysics(),
+                              itemCount: data.length,
+                              itemBuilder: (context, x) {
+                                return Flexible(
+                                    child: Container(
+                                  width: MediaQuery.of(context).size.width,
+                                  child: ListView(
+                                    shrinkWrap: true,
+                                    physics: BouncingScrollPhysics(),
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 30),
+                                    children: <Widget>[
+                                      Container(
+                                          height: 70,
+                                          child: Row(
+                                            children: [
+                                              Container(
+                                                decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            15),
+                                                    color: Colors.orange
+                                                        .withOpacity(0.2)),
+                                                height: 55,
+                                                width: 55,
+                                                child: Padding(
+                                                  padding: EdgeInsets.all(10),
+                                                  child: Image.network(
+                                                      data[x]['imageURL']),
+                                                ),
+                                              ),
+                                              Padding(
+                                                  padding:
+                                                      EdgeInsets.only(left: 25),
+                                                  child: Text(
+                                                    data[x]["item"],
+                                                    style: TextStyle(
+                                                        color: Colors.white,
+                                                        fontSize: 18,
+                                                        fontWeight:
+                                                            FontWeight.w300),
+                                                  )),
+                                              Spacer(),
+                                              Icon(
+                                                Icons.arrow_right_rounded,
+                                                color: Colors.grey.shade800,
+                                                size: 30,
+                                              )
+                                            ],
+                                          )),
+                                    ],
+                                  ),
+                                ));
+                              },
+                            ),
+                          );
                         }
                       } else {
                         return Container(

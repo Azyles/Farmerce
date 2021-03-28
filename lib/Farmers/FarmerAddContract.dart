@@ -511,9 +511,9 @@ class _AddContractState extends State<AddContract> {
                   Slider(
                     value: _currentSliderValue,
                     min: 0,
-                    max: 100,
+                    max: 20,
                     activeColor: Color.fromRGBO(131, 194, 100, 1),
-                    divisions: 100,
+                    divisions: 200,
                     inactiveColor: Colors.grey[900],
                     label: _currentSliderValue.round().toString(),
                     onChanged: (double value) {
@@ -529,6 +529,27 @@ class _AddContractState extends State<AddContract> {
                         child: new Material(
                           child: new InkWell(
                             onTap: () async {
+                              var imageURL = '';
+
+                              if (itemNameController.text.toLowerCase() ==
+                                  "apple") {
+                                imageURL =
+                                    "https://jonamacorchard.com/new/wp-content/uploads/2018/04/jonamac-orchard-zestar_258x258_acf_cropped.png";
+                              } else if (itemNameController.text
+                                      .toLowerCase() ==
+                                  "orange") {
+                                imageURL =
+                                    "https://www.sandjmandarins.com/wp-content/uploads/2019/03/Mandarin-Orange-PNG-Transparent-Image.png";
+                              } else if (itemNameController.text
+                                      .toLowerCase() ==
+                                  "mango") {
+                                imageURL =
+                                    "https://www.aweta.com/images/produces/overzicht/aweta-product-mango.png";
+                              } else {
+                                imageURL =
+                                    "https://jonamacorchard.com/new/wp-content/uploads/2018/04/jonamac-orchard-zestar_258x258_acf_cropped.png";
+                              }
+
                               FirebaseFirestore.instance
                                   .collection("Contracts")
                                   .doc()
@@ -536,7 +557,8 @@ class _AddContractState extends State<AddContract> {
                                 "owner": auth.currentUser.email,
                                 "farm": widget.farmName,
                                 "price": _currentSliderValue.toStringAsFixed(2),
-                                "item": itemNameController.text
+                                "item": itemNameController.text,
+                                "imageURL": imageURL
                               }).then((value) {
                                 Navigator.push(
                                     context,
