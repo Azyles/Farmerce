@@ -12,23 +12,23 @@ class ItemPurchase extends StatefulWidget {
 class _ItemPurchaseState extends State<ItemPurchase> {
   int _selectedIndex = 0;
   final List<String> farmName = <String>[
-    'John Doe Farms',
-    'John Doe Farms',
-    'John Doe Farms',
+    'Fresh Foods Farms',
+    'Arya Farms',
+    'Safe Eats Farms',
   ];
   final List<String> listing = <String>[
     '100.10000',
-    '100.10000',
-    '100.10000',
+    '400.20000',
+    '600.1000',
   ];
   final List<String> price = <String>[
     '1.42',
-    '1.52',
-    '1.62',
+    '1.57',
+    '1.63',
   ];
   final List<String> change = <String>[
     '10',
-    '15',
+    '18',
     '20',
   ];
   double _currentSliderValue = 10;
